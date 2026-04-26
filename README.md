@@ -62,7 +62,6 @@ All code follows **Algorithm 1** (page 16) exactly:
 # GRACE 複現結果
 
 論文:_The Geometry of Robustness_ (arXiv:2603.27139, Chopra et al., 2026)
-複現對象:Algorithm 1(page 16),CIFAR-100 + CLIP ViT-B/32 + LoRA(rank=64)
 
 ---
 
@@ -71,23 +70,23 @@ All code follows **Algorithm 1** (page 16) exactly:
 | 項目 | 設定 |
 |---|---|
 | Backbone | CLIP ViT-B/32(OpenAI) |
-| 微調 | LoRA r=64,只動 visual encoder 的 q/k/v/out_proj |
-| 資料集 | CIFAR-100(50k train / 10k test,resize 32→224) |
-| 攻擊 | PGD-10,L∞,**ε=4/255**,**step=1/255** |
+| Fine tuned | LoRA r=64,only visual encoder 的 q/k/v/out_proj |
+| Dataset | CIFAR-100(50k train / 10k test,resize 32→224) |
+| Attack | PGD-10,L∞,**ε=4/255**,**step=1/255** |
 | Epochs / Batch / LR | 50 / 256 / 2e-4(AdamW + cosine) |
-| GRACE 參數 | λ_LAR=1.0, λ_GV=1.0, ρ=0.05, r_AWP_max=4 |
+| GRACE parameter | λ_LAR=1.0, λ_GV=1.0, ρ=0.05, r_AWP_max=4 |
 | Curvature | K=1000, percentile=0.8, β=0.9 |
 
 ---
 
 ## 二、核心結果(`checkpoints/best.pt`)
 
-| 指標 | 數值 |
+| Indicator | Acc (%) |
 |---|---:|
-| **ID Accuracy**(CIFAR-100 test, 10000 張) | **85.37 %** |
-| **Adversarial Accuracy**(PGD-10, ε=4/255) | **37.10 %** |
-| **OOD Average**(CIFAR-100-C, severity=5, 15 corruptions) | **55.54 %** |
-| **Harmonic Mean**(ID, OOD, Adv) | **52.94 %** |
+| **ID Accuracy** | **85.37 %** |
+| **Adversarial Accuracy** | **37.10 %** |
+| **OOD Average** | **55.54 %** |
+| **Harmonic Mean** | **52.94 %** |
 
 ---
 
@@ -106,23 +105,36 @@ All code follows **Algorithm 1** (page 16) exactly:
 | | | **contrast** | **17.31** |
 
 **觀察**:
-- **最容易**:brightness、frost、pixelate(70%+) — 模型對 photometric / structural 擾動穩
-- **最弱**:contrast(17.31%)、impulse_noise(20.95%) — 對極端對比度跟脈衝雜訊明顯崩
+- 最容易:brightness、frost、pixelate(70%+) — 模型對 photometric / structural 擾動穩
+- 最弱:contrast(17.31%)、impulse_noise(20.95%) — 對極端對比度跟脈衝雜訊明顯崩
 - 整體 noise 類別(gaussian / shot / impulse)平均只有 ~31%,是 OOD 表現的主要拖油瓶
 
 ---
 
-## 四、與論文的比較(Paper vs Ours)
+## 四、Feature Geometry(Section 4 / Table 2)
+
+| Metric | Value |
+|---|---:|
+| Cosine alignment(clean ↔ adv) | 0.4501 |
+| LID(clean) | 13.98 |
+| LID(adv) | 15.86 |
+| ΔLID | 1.87 |
+
+> adv 特徵的 LID 比 clean 高 ~13%,表示對抗樣本把特徵推到較高內在維度的區域;cosine alignment 0.45 顯示對抗特徵跟乾淨特徵還是有相當偏移(完美一致為 1.0)。
+
+---
+
+## 五、與論文的比較(Paper vs Ours)
 
 
-| 指標 | Paper(GRACE) | Ours | 差距 |
+| Indicator | Ours  | GRACE | Δ |
 |---|---:|---:|---:|
-| Clean / ID Acc | 85.37 % % | _____ % | _____ |
-| Robust / Adv Acc(PGD) | 37.10 % % | _____ % | _____ |
-| OOD Avg(CIFAR-100-C) | 55.54 % | _____ % | _____ |
-| Harmonic | 52.94 % | _____ % | _____ |
+| Clean / ID Acc | _____ % | 85.37 % | _____ |
+| Robust / Adv Acc (PGD-10) | _____ % | 37.10 % | _____ |
+| OOD Avg (CIFAR-100-C, sev=5) | _____ % | 55.54 % | _____ |
+| 3-way Harmonic Mean | _____ % | 52.94 % | _____ |
 
-> 注意:論文測試端是 **AutoAttack(APGD-CE)**,我們的 Adv 用 PGD-10,通常 PGD ≥ AutoAttack 約 2–5%。後面測試可以試試看Auto Attack,可加 `--autoattack` 重跑。
+
 ## Citation
 
 ```bibtex
