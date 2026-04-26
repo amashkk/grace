@@ -1,8 +1,4 @@
 # GRACE 複現結果
-
-論文:_The Geometry of Robustness_ (arXiv:2603.27139, Chopra et al., 2026)
-複現對象:Algorithm 1(page 16),CIFAR-100 + CLIP ViT-B/32 + LoRA(rank=64)
-
 ---
 
 ## 一、實驗設定(Table 10)
@@ -52,8 +48,6 @@
 ---
 
 ## 四、與論文的比較(Paper vs Ours)
-
-> ⚠️ 我這邊讀不了 PDF。請打開 `paper.pdf.pdf` 翻 **CIFAR-100 主結果表(Section 6)**,找 **GRACE on CLIP ViT-B/32** 那一列填入。
 
 | 指標 | Paper(GRACE) | Ours | 差距 |
 |---|---:|---:|---:|
