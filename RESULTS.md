@@ -17,7 +17,7 @@
 
 ## 二、核心結果(`checkpoints/best.pt`)
 
-| 指標 | 數值 |
+| Indicator | Acc (%) |
 |---|---:|
 | **ID Accuracy**(CIFAR-100 test, 10000 張) | **85.37 %** |
 | **Adversarial Accuracy**(PGD-10, ε=4/255) | **37.10 %** |
@@ -49,7 +49,7 @@
 
 ## 四、與論文的比較(Paper vs Ours)
 
-| 指標 | Paper(GRACE) | Ours | 差距 |
+| Indicator | Paper(GRACE) | Ours |  |
 |---|---:|---:|---:|
 | Clean / ID Acc | 85.37 % % | _____ % | _____ |
 | Robust / Adv Acc(PGD) | 37.10 % % | _____ % | _____ |
