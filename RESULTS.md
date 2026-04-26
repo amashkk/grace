@@ -19,10 +19,10 @@
 
 | Indicator | Acc (%) |
 |---|---:|
-| **ID Accuracy**(CIFAR-100 test, 10000 張) | **85.37 %** |
-| **Adversarial Accuracy**(PGD-10, ε=4/255) | **37.10 %** |
-| **OOD Average**(CIFAR-100-C, severity=5, 15 corruptions) | **55.54 %** |
-| **Harmonic Mean**(ID, OOD, Adv) | **52.94 %** |
+| **ID Accuracy** | **85.37 %** |
+| **Adversarial Accuracy** | **37.10 %** |
+| **OOD Average** | **55.54 %** |
+| **Harmonic Mean** | **52.94 %** |
 
 ---
 
