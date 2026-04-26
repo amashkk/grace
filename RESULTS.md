@@ -57,9 +57,9 @@
 
 | 指標 | Paper(GRACE) | Ours | 差距 |
 |---|---:|---:|---:|
-| Clean / ID Acc | _____ % | 85.37 % | _____ |
-| Robust / Adv Acc(PGD) | _____ % | 37.10 % | _____ |
-| OOD Avg(CIFAR-100-C) | _____ % | 55.54 % | _____ |
-| way Harmonic | _____ % | 52.94 % | _____ |
+| Clean / ID Acc | 85.37 % % | _____ % | _____ |
+| Robust / Adv Acc(PGD) | 37.10 % % | _____ % | _____ |
+| OOD Avg(CIFAR-100-C) | 55.54 % | _____ % | _____ |
+| Harmonic | 52.94 % | _____ % | _____ |
 
 > 注意:論文測試端是 **AutoAttack(APGD-CE)**,我們的 Adv 用 PGD-10,通常 PGD ≥ AutoAttack 約 2–5%。要嚴格對齊論文,可加 `--autoattack` 重跑。
