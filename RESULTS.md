@@ -1,7 +1,6 @@
 # GRACE 複現結果
 
 論文:_The Geometry of Robustness_ (arXiv:2603.27139, Chopra et al., 2026)
-複現對象:Algorithm 1(page 16),CIFAR-100 + CLIP ViT-B/32 + LoRA(rank=64)
 
 ---
 
@@ -45,8 +44,8 @@
 | | | **contrast** | **17.31** |
 
 **觀察**:
-- **最容易**:brightness、frost、pixelate(70%+) — 模型對 photometric / structural 擾動穩
-- **最弱**:contrast(17.31%)、impulse_noise(20.95%) — 對極端對比度跟脈衝雜訊明顯崩
+- 最容易:brightness、frost、pixelate(70%+) — 模型對 photometric / structural 擾動穩
+- 最弱:contrast(17.31%)、impulse_noise(20.95%) — 對極端對比度跟脈衝雜訊明顯崩
 - 整體 noise 類別(gaussian / shot / impulse)平均只有 ~31%,是 OOD 表現的主要拖油瓶
 
 ---
