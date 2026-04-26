@@ -66,9 +66,8 @@
 
 ## 五、與論文的比較(Paper vs Ours)
 
-> ⚠️ 我這邊讀不了 PDF。請打開 `paper.pdf.pdf` 翻 **CIFAR-100 主結果表(Section 6)**,找 **GRACE on CLIP ViT-B/32** 那一列填入「Paper」欄。
 
-| Indicator | Paper (GRACE) | Ours | Δ |
+| Indicator | Ours  | Paper (GRACE) | Δ |
 |---|---:|---:|---:|
 | Clean / ID Acc | _____ % | 85.37 % | _____ |
 | Robust / Adv Acc (PGD-10) | _____ % | 37.10 % | _____ |
