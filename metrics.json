@@ -11,7 +11,26 @@
   "results": {
     "id_accuracy": 85.37,
     "adversarial_accuracy_pgd": 37.10,
-    "harmonic_mean": 51.72
+    "ood_avg_severity5": 55.54,
+    "harmonic_mean_id_adv": 51.72,
+    "harmonic_mean_3way": 52.94
+  },
+  "ood_per_corruption_severity5": {
+    "gaussian_noise": 35.14,
+    "shot_noise": 37.55,
+    "impulse_noise": 20.95,
+    "defocus_blur": 65.38,
+    "glass_blur": 53.54,
+    "motion_blur": 62.67,
+    "zoom_blur": 69.60,
+    "snow": 69.42,
+    "frost": 70.83,
+    "fog": 46.86,
+    "brightness": 76.98,
+    "contrast": 17.31,
+    "elastic_transform": 68.39,
+    "pixelate": 70.32,
+    "jpeg_compression": 68.10
   },
   "training": {
     "epochs": 50,
@@ -23,10 +42,5 @@
     "awp_max_rank": 4,
     "curvature_K": 1000,
     "curvature_percentile": 0.8
-  },
-  "notes": [
-    "ID 與 Adv 為 CIFAR-100 test set (10000 張) 完整評估。",
-    "Adv 為訓練端使用的 10-step PGD,論文測試端使用 AutoAttack APGD-CE,可加 --autoattack 重跑。",
-    "OOD (CIFAR-100-C) 尚未評估;若要,需先下載 CIFAR-100-C 至 data/CIFAR-100-C/ 後跑 eval_full。"
-  ]
+  }
 }
